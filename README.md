@@ -1,13 +1,13 @@
 # Web parsing studying
 
-Here are examples of my scraping with libraries and frameworks:
+Here are examples of my studying parsing tasks with libraries and frameworks:
 
 ## Libraries requests & BeautifulSoup (bs4)
 
-[bs4.ipynb](https://github.com/sashkatap/scraping/blob/main/bs4.ipynb) - I scraped [the studing site](https://books.toscrape.com/) containing many books.
+[bs4.ipynb](https://github.com/sashkatap/scraping/blob/main/bs4.ipynb) - I parsed [the studing site](https://books.toscrape.com/) containing many books.
 My goal was to get all 20 books from a page.
 
-[bs4_pages.ipynb](https://github.com/sashkatap/scraping/blob/main/bs4_pages.ipynb) - In the next case I scraped all books from all pages of [the site](https://books.toscrape.com/).
+[bs4_pages.ipynb](https://github.com/sashkatap/scraping/blob/main/bs4_pages.ipynb) - In the next case I parsed all 20 books from all 50 pages of [the site](https://books.toscrape.com/).
 
 ## Scrapy framework
 
@@ -17,7 +17,7 @@ As a result I got [books.json](https://github.com/sashkatap/scraping/blob/main/b
 
 ### Multiple pages scraping with Scrapy
 
-[Books_pages folder](https://github.com/sashkatap/scraping/tree/main/books_pages) - Here I created a spider file again [pages_crawl.py](https://github.com/sashkatap/scraping/blob/main/books_pages/books_pages/spiders/pages_crawl.py) for this time to get all items (books) from all pages of [the site](https://books.toscrape.com/). Summury 1000 books in a minute.
+[Books_pages folder](https://github.com/sashkatap/scraping/tree/main/books_pages) - Here I created a spider file again [pages_crawl.py](https://github.com/sashkatap/scraping/blob/main/books_pages/books_pages/spiders/pages_crawl.py) for this time to get all books from all pages of [the site](https://books.toscrape.com/). Summury 1000 books in a minute.
 
 As a result I got [books_pages_all.json](https://github.com/sashkatap/scraping/blob/main/books_pages/books_pages_all.json) file with image, title, price, description and UPC of each book.
 
@@ -27,13 +27,17 @@ Also, I added a line to correct encoding `FEED_EXPORT_ENCODING = 'utf-8'` in [se
 
 For scraping data from JavaScript sites, is requaired to add [the library provides Scrapy and JavaScript integration using Splash](https://github.com/scrapy-plugins/scrapy-splash).
 
-Docker should be installed, for this case it's necessary!
+To test local Splash server, run Docker container:
 
-To test local splash server, run docker:
+```
+sudo docker run -p 8050:8050 scrapinghub/splash
+```
 
-> sudo docker run -p 8050:8050 scrapinghub/splash
+Web interfase is avalible on the `localhost:8050` in your browser.
 
-Web interfase is avalible on the `localhost:8050` in your browser. To test it, try to get JS site content, add follow code to web console in the interface:
+Try to get content of JavaScript site for test.
+
+For that add following code to web console:
 
 ```
 function main(splash, args)
@@ -43,13 +47,11 @@ function main(splash, args)
 end
 ```
 
-The goal is take all 100 quotes from 10 pages of [the javascript site](https://quotes.toscrape.com/js/).
+The goal of the [qt_splash.py script](https://github.com/sashkatap/scraping/blob/main/quotes/quotes/spiders/qt_splash.py) is take all 100 quotes from 10 pages of [the javascript site](https://quotes.toscrape.com/js/).
 
-For that I wrote [the python script](https://github.com/sashkatap/scraping/blob/main/quotes/quotes/spiders/qt_splash.py)
+According to the instruction of Splash author, I added in [settings.py](https://github.com/sashkatap/scraping/blob/main/quotes/quotes/settings.py) : 1 - 4 points and encoding utf-8.
 
-According to the instruction of Splash author, in [settings.py](https://github.com/sashkatap/scraping/blob/main/quotes/quotes/settings.py) add 1 - 4 points, and encoding utf-8.
-
-> For correct working of the script, 1st run docker by the command above and 2nd run the script!
+> For correct working of the script, 1st run Docker by the command above and 2nd run the script!
 
 As a result I got [quotes.json](https://github.com/sashkatap/scraping/blob/main/quotes/quotes.json) file with 10 quotes from 1st page, and [all_quotes.json](https://github.com/sashkatap/scraping/blob/main/quotes/all_quotes.json) file with 100 quotes from all pages.
 
@@ -57,10 +59,10 @@ As a result I got [quotes.json](https://github.com/sashkatap/scraping/blob/main/
 
 > Selenium WebDriver for your current browser should be installed before starting the script!
 
-1. The goal of the [python script] is [auto login on the site](https://quotes.toscrape.com/login).
+The goal of the [login.py script](https://github.com/sashkatap/scraping/blob/main/Selenium/login.py) is auto login [on the site](https://quotes.toscrape.com/login).
 
 As a result, browser Chrome starts automatically, logined to the site and gets html code of the page after login.
 
-2. The goal of the [python script] is to find all quotes on [the endless scroll site](https://quotes.toscrape.com/scroll)
+The goal of the [infinite_scroll.py script](https://github.com/sashkatap/scraping/blob/main/Selenium/infinite_scroll.py) is to find all quotes on [the endless scroll site](https://quotes.toscrape.com/scroll)
 
-As a result, browser Chrome starts automatically, scrolls down the site to the end, finds all quotes and counts it.
+As a result, browser Chrome starts automatically, scrolls down the site to the end, finds all quotes and counts it (100).
