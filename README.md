@@ -47,17 +47,19 @@ function main(splash, args)
 end
 ```
 
-The goal of the [qt_splash.py script](https://github.com/sashkatap/scraping/blob/main/quotes/quotes/spiders/qt_splash.py) is take all 100 quotes from 10 pages of [the javascript site](https://quotes.toscrape.com/js/).
+For correct working of the script:
 
-According to the instruction of Splash author, I added in [settings.py](https://github.com/sashkatap/scraping/blob/main/quotes/quotes/settings.py) : 1 - 4 points and encoding utf-8.
+1. According to the instruction of Splash author, I add in [settings.py](https://github.com/sashkatap/scraping/blob/main/quotes/quotes/settings.py) : 1 - 4 points and encoding utf-8
+2. Than run Docker container by the command above
+3. And start the [qt_splash.py script](https://github.com/sashkatap/scraping/blob/main/quotes/quotes/spiders/qt_splash.py)
 
-> For correct working of the script, 1st run Docker by the command above and 2nd run the script!
+My goal is parse all 100 quotes from 10 pages of [the javascript site](https://quotes.toscrape.com/js/).
 
 As a result I got [quotes.json](https://github.com/sashkatap/scraping/blob/main/quotes/quotes.json) file with 10 quotes from 1st page, and [all_quotes.json](https://github.com/sashkatap/scraping/blob/main/quotes/all_quotes.json) file with 100 quotes from all pages.
 
 ## Selenium Framework
 
-> Selenium WebDriver for your current browser should be installed before starting the script!
+> Selenium WebDriver for your current version browser should be installed before starting the script!
 
 The goal of the [login.py script](https://github.com/sashkatap/scraping/blob/main/Selenium/login.py) is auto login [on the site](https://quotes.toscrape.com/login).
 
