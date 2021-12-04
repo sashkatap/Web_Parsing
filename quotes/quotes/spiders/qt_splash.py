@@ -1,12 +1,11 @@
 import scrapy
 from scrapy_splash import SplashRequest   # add Splash
 
-'''To start the file, print to console:  scrapy crawl qt_splash -o quotes.json '''
+'''To start the script, print to console:  scrapy crawl qt_splash -o all_quotes.json '''
 
 class QtSplashSpider(scrapy.Spider):
     name = 'qt_splash'
     allowed_domains = ['quotes.toscrape.com']
-
 
     script = '''
         function main(splash, args)
@@ -17,7 +16,7 @@ class QtSplashSpider(scrapy.Spider):
     '''
 
     def start_requests(self):
-    # Go to the link and parse the content on JS using "script" above and transmit it bottom function     
+    # Go to the link and parse the content using "script" above and transmit it bottom function     
         yield SplashRequest(url='https://quotes.toscrape.com/js/', callback=self.parse, endpoint='execute', args={
             'lua_source': self.script
         })
@@ -31,7 +30,7 @@ class QtSplashSpider(scrapy.Spider):
                 'text': quote.xpath(".//span[@class='text']/text()").get(),
                 'tags': quote.xpath(".//a[@class='tag']/text()").getall()
             }
-    # Get a link to the next page, if it is available, go there and execute the function again 
+    # Get a next page link, if it is, go there and execute the function again 
         next_page = response.xpath("//li[@class='next']/a/@href").get()
         
         if next_page:             # the same, but not right: url = 'quotes.toscrape.com' + next_page  
@@ -39,3 +38,4 @@ class QtSplashSpider(scrapy.Spider):
             yield SplashRequest(url=url, callback=self.parse, endpoint='execute', args={
                 'lua_source': self.script
             })
+            # the same script was done earlier, but this time it gets new link to next page each time
