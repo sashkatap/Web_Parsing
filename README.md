@@ -52,3 +52,15 @@ According to the instruction of Splash author, in [settings.py](https://github.c
 > For correct working of the script, 1st run docker by the command above and 2nd run the script!
 
 As a result I got [quotes.json](https://github.com/sashkatap/scraping/blob/main/quotes/quotes.json) file with 10 quotes from 1st page, and [all_quotes.json](https://github.com/sashkatap/scraping/blob/main/quotes/all_quotes.json) file with 100 quotes from all pages.
+
+## Selenium Framework
+
+> Selenium WebDriver for your current browser should be installed before starting the script!
+
+1. The goal of the [python script] is [auto login on the site](https://quotes.toscrape.com/login).
+
+As a result, browser Chrome starts automatically, logined to the site and gets html code of the page after login.
+
+2. The goal of the [python script] is to find all quotes on [the endless scroll site](https://quotes.toscrape.com/scroll)
+
+As a result, browser Chrome starts automatically, scrolls down the site to the end, finds all quotes and counts it.
