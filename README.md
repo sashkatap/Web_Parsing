@@ -57,7 +57,7 @@ My goal is parse all 100 quotes from 10 pages of [the javascript site](https://q
 
 As a result I got [quotes.json](https://github.com/sashkatap/scraping/blob/main/quotes/quotes.json) file with 10 quotes from 1st page, and [all_quotes.json](https://github.com/sashkatap/scraping/blob/main/quotes/all_quotes.json) file with 100 quotes from all pages.
 
-## Selenium Framework
+## Selenium framework
 
 > Selenium WebDriver for your current version browser should be installed before starting the script!
 
